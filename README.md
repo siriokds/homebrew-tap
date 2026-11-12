@@ -1,10 +1,11 @@
 <p align="center">
-  <img src="images/banner.svg" alt="siriokds/tap — small text editors for the Mac, ready to install with Homebrew" width="100%">
+  <img src="images/banner.svg" alt="siriokds/tap — small editors for the Mac, ready to install with Homebrew" width="100%">
 </p>
 
 <p align="center">
   <a href="#get-started"><b>Get started</b></a> &nbsp;·&nbsp;
   <a href="#texa"><b>texa</b></a> &nbsp;·&nbsp;
+  <a href="#hexa"><b>hexa</b></a> &nbsp;·&nbsp;
   <a href="#sparkedit"><b>SparkEdit</b></a> &nbsp;·&nbsp;
   <a href="https://github.com/siriokds/homebrew-tap/releases"><b>Releases</b></a>
 </p>
@@ -25,18 +26,27 @@ brew tap siriokds/tap && brew trust siriokds/tap
 
 <table>
 <tr>
-<td width="50%" valign="top">
+<td width="33%" valign="top">
 
-**[texa](#texa)** &nbsp;—&nbsp; the editor for the terminal
+**[texa](#texa)** &nbsp;—&nbsp; text, in the terminal
 
 ```sh
 brew install texa
 ```
 
 </td>
-<td width="50%" valign="top">
+<td width="33%" valign="top">
 
-**[SparkEdit](#sparkedit)** &nbsp;—&nbsp; the editor for the Mac
+**[hexa](#hexa)** &nbsp;—&nbsp; bytes, in the terminal
+
+```sh
+brew install hexa
+```
+
+</td>
+<td width="33%" valign="top">
+
+**[SparkEdit](#sparkedit)** &nbsp;—&nbsp; text, on the Mac
 
 ```sh
 brew install --cask sparkedit
@@ -87,6 +97,42 @@ beside the name, at the top left; `F10` quits.
 
 <sub>texa uses the engine of Microsoft Edit (MIT License); its notice is installed with the
 program (`CREDITS.md`, in `$(brew --prefix)/share/doc/texa`).</sub>
+
+<br>
+
+---
+
+## hexa
+
+<p align="center">
+  <img src="images/hexa.svg" alt="hexa in a terminal window: the offsets, the bytes, the text, the keys at the bottom" width="760">
+</p>
+
+A **hex editor** for the terminal: a file's bytes and their text side by side, to read, search
+and change byte by byte. The same look and keys as texa.
+
+<table>
+<tr><td width="150"><b>Find and replace</b></td><td><code>^F</code> bytes, text or numbers; <code>??</code> is any byte, <code>*</code> 0 to 16 bytes (<code>DE AD * BE EF</code>); Find all lists every place; <code>^R</code> replaces</td></tr>
+<tr><td width="150"><b>Go to, select, fill</b></td><td><code>^G</code> an offset, hex or decimal; select a block, fill it, insert or write bytes: each form says what it will do while you type</td></tr>
+<tr><td width="150"><b>Checksums, statistics</b></td><td>CRC, MD5, SHA and more, of the file or the selection (Enter copies the value); the 256 byte values as a chart, with the entropy</td></tr>
+<tr><td width="150"><b>Every command</b></td><td><code>^P</code> finds any command by typing; <code>F1</code> lists the keys</td></tr>
+<tr><td width="150"><b>More files</b></td><td>several files open as tabs (<code>F6</code> the next one); the text in ANSI, Latin-1, ASCII, Mac Roman, DOS 437 or EBCDIC</td></tr>
+</table>
+
+**Install**
+
+```sh
+brew install hexa
+```
+
+**Update** &nbsp;<sub>`brew update` first reads the new versions</sub>
+
+```sh
+brew update && brew upgrade hexa
+```
+
+**Use** &nbsp;—&nbsp; `hexa file.bin` opens a file, `hexa` alone shows the recent ones. The
+version is beside the name, at the top left; `F10` quits.
 
 <br>
 

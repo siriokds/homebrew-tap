@@ -5,9 +5,12 @@
               cells and colours (tools/texa-screen.json). To make the dump again, in the Texa
               repository, at every version (the version is in the title):
                   TEXA_DUMP=<this folder>/texa-screen.json cargo test readme_screen -- --ignored
+  hexa.svg    the same for hexa (tools/hexa-screen.json), in the Hexa repository:
+                  COLORTERM=truecolor HEXA_THEME=dark HEXA_DUMP=<this folder>/hexa-screen.json \
+                      cargo test -p hexa-tui readme_screen -- --ignored
   banner.svg  the heading, with the install lines typed one after the other.
 
-  python3 tools/pictures.py tools/texa-screen.json images
+  python3 tools/pictures.py tools images
 
 SparkEdit's pictures are screenshots of a copy started with --demo-tabs=N (its sample texts),
 cut and rounded by tools/crop.swift: crop in out x y width height radius outWidth.
@@ -35,16 +38,17 @@ def words(text, x0, y, cw, fill, extra=""):
 def dots(x, y):
     return "".join(f'<circle cx="{x + i*20}" cy="{y}" r="6" fill="{c}"/>' for i, c in enumerate(["#ff5f57", "#febc2e", "#28c840"]))
 
-def texa(dump, out):
+def screen(dump, out, name):
+    """A terminal program's real screen (`dump`: its cells and colours) as an SVG window."""
     d = json.load(open(dump))
     W, H, cells = d["w"], d["h"], d["cells"]
     cw, lh, fs = 8.6, 21, 14
     pad, bar = 16, 38
     width, height = W * cw + pad * 2, H * lh + bar + pad
-    o = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width:.0f} {height:.0f}" width="{width:.0f}" height="{height:.0f}" role="img" aria-label="texa in a terminal window">',
+    o = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width:.0f} {height:.0f}" width="{width:.0f}" height="{height:.0f}" role="img" aria-label="{name} in a terminal window">',
          f'<rect x="0.5" y="0.5" width="{width-1:.0f}" height="{height-1:.0f}" rx="12" fill="{BG}" stroke="{FRAME}"/>',
          dots(22, 19),
-         f'<text x="{width/2:.0f}" y="24" text-anchor="middle" font-family="{MONO}" font-size="12" fill="#8a8f9c">texa — {W}×{H}</text>',
+         f'<text x="{width/2:.0f}" y="24" text-anchor="middle" font-family="{MONO}" font-size="12" fill="#8a8f9c">{name} — {W}×{H}</text>',
          f'<g font-family="{MONO}" font-size="{fs}" xml:space="preserve">']
     for y in range(H):
         row = cells[y * W:(y + 1) * W]
@@ -67,12 +71,16 @@ def texa(dump, out):
             o.append(words(text, pad + a*cw, ty + 15, cw, fg or FG, ' font-weight="700"' if bold else ""))
     # the cursor, as the Terminal's block
     o.append(f'<rect x="{pad + d["cx"]*cw:.1f}" y="{bar + d["cy"]*lh}" width="{cw:.1f}" height="{lh}" fill="#b4b7bf"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.2s" repeatCount="indefinite"/></rect>')
+    # The character under the cursor shows through it, as in the terminal.
+    under = cells[d["cy"] * W + d["cx"]][0] if d["cy"] < H and d["cx"] < W else " "
+    if under.strip():
+        o.append(f'<text x="{pad + d["cx"]*cw:.1f}" y="{bar + d["cy"]*lh + 15}" textLength="{cw:.1f}" lengthAdjust="spacingAndGlyphs" fill="{BG}">{esc(under)}<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.2s" repeatCount="indefinite"/></text>')
     o.append("</g></svg>")
     open(out, "w").write("\n".join(o) + "\n")
 
 def banner(out):
-    Wd, Ht = 960, 300
-    cx0, cy0, cwid, chei = 452, 34, 476, 232   # the terminal card
+    Wd, Ht = 960, 326
+    cx0, cy0, cwid, chei = 452, 34, 476, 258   # the terminal card
     fs, cw, lh = 14, 8.45, 25
     tx = cx0 + 22
     lines = [  # (text, colour, typed?)
@@ -80,17 +88,18 @@ def banner(out):
         ("$ brew tap siriokds/tap && brew trust siriokds/tap", FG, True),
         ("# then one line per app", "#7f8594", False),
         ("$ brew install texa", FG, True),
+        ("$ brew install hexa", FG, True),
         ("$ brew install --cask sparkedit", FG, True),
     ]
-    o = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {Wd} {Ht}" width="{Wd}" height="{Ht}" role="img" aria-label="siriokds/tap: brew tap siriokds/tap, then brew install texa and brew install --cask sparkedit">',
+    o = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {Wd} {Ht}" width="{Wd}" height="{Ht}" role="img" aria-label="siriokds/tap: brew tap siriokds/tap, then brew install texa, brew install hexa and brew install --cask sparkedit">',
          '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b1d24"/><stop offset="1" stop-color="#15161b"/></linearGradient></defs>',
          f'<rect x="0.5" y="0.5" width="{Wd-1}" height="{Ht-1}" rx="18" fill="url(#g)" stroke="#2c303a"/>',
          # the left side: what this is
-         f'<text x="48" y="92" font-family="{MONO}" font-size="13" letter-spacing="3" fill="#8a8f9c">HOMEBREW TAP</text>',
-         f'<text x="46" y="150" font-family="{MONO}" font-size="46" font-weight="700" fill="{FG}">siriokds<tspan fill="#e15646">/</tspan>tap</text>',
-         f'<text x="48" y="196" font-family="-apple-system, BlinkMacSystemFont, \'Segoe UI\', Helvetica, Arial, sans-serif" font-size="19" fill="#c3c6cf">Small text editors for the Mac,</text>',
-         f'<text x="48" y="222" font-family="-apple-system, BlinkMacSystemFont, \'Segoe UI\', Helvetica, Arial, sans-serif" font-size="19" fill="#c3c6cf">ready to install with Homebrew.</text>',
-         f'<rect x="48" y="246" width="56" height="3" rx="1.5" fill="#e15646"/><rect x="110" y="246" width="56" height="3" rx="1.5" fill="#ffc107"/>',
+         f'<text x="48" y="105" font-family="{MONO}" font-size="13" letter-spacing="3" fill="#8a8f9c">HOMEBREW TAP</text>',
+         f'<text x="46" y="163" font-family="{MONO}" font-size="46" font-weight="700" fill="{FG}">siriokds<tspan fill="#e15646">/</tspan>tap</text>',
+         f'<text x="48" y="209" font-family="-apple-system, BlinkMacSystemFont, \'Segoe UI\', Helvetica, Arial, sans-serif" font-size="19" fill="#c3c6cf">Small editors for the Mac,</text>',
+         f'<text x="48" y="235" font-family="-apple-system, BlinkMacSystemFont, \'Segoe UI\', Helvetica, Arial, sans-serif" font-size="19" fill="#c3c6cf">ready to install with Homebrew.</text>',
+         f'<rect x="48" y="259" width="56" height="3" rx="1.5" fill="#e15646"/><rect x="110" y="259" width="56" height="3" rx="1.5" fill="#ffc107"/>',
          # the terminal
          f'<rect x="{cx0}" y="{cy0}" width="{cwid}" height="{chei}" rx="12" fill="{BG}" stroke="{FRAME}"/>',
          dots(cx0 + 22, cy0 + 19),
@@ -123,6 +132,7 @@ def banner(out):
     open(out, "w").write("\n".join(o) + "\n")
 
 if __name__ == "__main__":
-    dump, outdir = sys.argv[1], sys.argv[2]
-    texa(dump, f"{outdir}/texa.svg")
+    tools, outdir = sys.argv[1], sys.argv[2]
+    for name in ("texa", "hexa"):
+        screen(f"{tools}/{name}-screen.json", f"{outdir}/{name}.svg", name)
     banner(f"{outdir}/banner.svg")
