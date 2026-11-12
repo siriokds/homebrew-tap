@@ -1,7 +1,7 @@
 class Hexa < Formula
   desc "Hex editor for the terminal: find bytes, replace, go to, checksums"
   homepage "https://github.com/siriokds/homebrew-tap"
-  version "0.2.0"
+  version "0.2.1"
 
   depends_on arch: :arm64
   depends_on :macos
@@ -10,7 +10,7 @@ class Hexa < Formula
   on_macos do
     on_arm do
       url "https://github.com/siriokds/homebrew-tap/releases/download/hexa-#{version}/hexa-#{version}-macos-arm64.tar.gz"
-      sha256 "014835a71aede84b58e71baa091a66430063f912a985fbc3a414d07f6ac81f86"
+      sha256 "ec50d642af9c2d7be0a17699dfe1749eff47c2f56c7cdcc608323fdc5aa1876d"
     end
   end
 

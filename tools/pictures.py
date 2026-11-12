@@ -5,7 +5,9 @@
               cells and colours (tools/texa-screen.json). To make the dump again, in the Texa
               repository, at every version (the version is in the title):
                   TEXA_DUMP=<this folder>/texa-screen.json cargo test readme_screen -- --ignored
-  hexa.svg    the same for hexa (tools/hexa-screen.json), in the Hexa repository:
+              The same run writes texa-find.json and texa-about.json beside it.
+  hexa.svg    the same for hexa (tools/hexa-screen.json, hexa-find.json, hexa-commands.json,
+              hexa-about.json), in the Hexa repository:
                   COLORTERM=truecolor HEXA_THEME=dark HEXA_DUMP=<this folder>/hexa-screen.json \
                       cargo test -p hexa-tui readme_screen -- --ignored
   banner.svg  the heading, with the install lines typed one after the other.
@@ -34,6 +36,25 @@ def words(text, x0, y, cw, fill, extra=""):
         w = m.group(0)
         out.append(f'<text x="{x0 + m.start()*cw:.1f}" y="{y}" textLength="{len(w)*cw:.1f}" lengthAdjust="spacingAndGlyphs" fill="{fill}"{extra}>{esc(w)}</text>')
     return "".join(out)
+
+# The lines of the frames, drawn as lines: as text they leave gaps between the rows.
+BOX = "─│┃╭╮╰╯"
+
+def box(sym, x0, y0, cw, lh, colour):
+    """A frame's piece in its cell, as a stroke: continuous from cell to cell."""
+    cx, cy = x0 + cw / 2, y0 + lh / 2
+    r = min(cw, lh) * 0.45
+    paths = {
+        "─": f"M{x0:.1f} {cy:.1f}H{x0 + cw:.1f}",
+        "│": f"M{cx:.1f} {y0:.1f}V{y0 + lh:.1f}",
+        "┃": f"M{cx:.1f} {y0:.1f}V{y0 + lh:.1f}",
+        "╭": f"M{x0 + cw:.1f} {cy:.1f}H{cx + r:.1f}Q{cx:.1f} {cy:.1f} {cx:.1f} {cy + r:.1f}V{y0 + lh:.1f}",
+        "╮": f"M{x0:.1f} {cy:.1f}H{cx - r:.1f}Q{cx:.1f} {cy:.1f} {cx:.1f} {cy + r:.1f}V{y0 + lh:.1f}",
+        "╰": f"M{cx:.1f} {y0:.1f}V{cy - r:.1f}Q{cx:.1f} {cy:.1f} {cx + r:.1f} {cy:.1f}H{x0 + cw:.1f}",
+        "╯": f"M{cx:.1f} {y0:.1f}V{cy - r:.1f}Q{cx:.1f} {cy:.1f} {cx - r:.1f} {cy:.1f}H{x0:.1f}",
+    }
+    width = 2.6 if sym == "┃" else 1.3
+    return f'<path d="{paths[sym]}" fill="none" stroke="{colour}" stroke-width="{width}"/>'
 
 def dots(x, y):
     return "".join(f'<circle cx="{x + i*20}" cy="{y}" r="6" fill="{c}"/>' for i, c in enumerate(["#ff5f57", "#febc2e", "#28c840"]))
@@ -64,13 +85,17 @@ def screen(dump, out, name):
             if bg:
                 o.append(f'<rect x="{pad + a*cw:.1f}" y="{ty}" width="{(b-a)*cw:.1f}" height="{lh}" fill="{bg}"/>')
         for a, b in runs:
-            text = "".join(c[0] for c in row[a:b])
+            _, fg, _, bold = row[a]
+            for x in range(a, b):
+                if row[x][0] in BOX:
+                    o.append(box(row[x][0], pad + x*cw, ty, cw, lh, fg or FG))
+            text = "".join(" " if c[0] in BOX else c[0] for c in row[a:b])
             if not text.strip(" "):
                 continue
-            _, fg, _, bold = row[a]
             o.append(words(text, pad + a*cw, ty + 15, cw, fg or FG, ' font-weight="700"' if bold else ""))
-    # the cursor, as the Terminal's block
-    o.append(f'<rect x="{pad + d["cx"]*cw:.1f}" y="{bar + d["cy"]*lh}" width="{cw:.1f}" height="{lh}" fill="#b4b7bf"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.2s" repeatCount="indefinite"/></rect>')
+    # the cursor, as the Terminal's block (none where the program hides it)
+    if d["cx"] >= 0 and d["cy"] >= 0:
+        o.append(f'<rect x="{pad + d["cx"]*cw:.1f}" y="{bar + d["cy"]*lh}" width="{cw:.1f}" height="{lh}" fill="#b4b7bf"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.2s" repeatCount="indefinite"/></rect>')
     # The character under the cursor shows through it, as in the terminal.
     under = cells[d["cy"] * W + d["cx"]][0] if d["cy"] < H and d["cx"] < W else " "
     if under.strip():
@@ -133,6 +158,13 @@ def banner(out):
 
 if __name__ == "__main__":
     tools, outdir = sys.argv[1], sys.argv[2]
-    for name in ("texa", "hexa"):
+    # Each program's view, then the other screens shown in the page.
+    shots = {
+        "texa": ["find", "about"],
+        "hexa": ["find", "commands", "about"],
+    }
+    for name, others in shots.items():
         screen(f"{tools}/{name}-screen.json", f"{outdir}/{name}.svg", name)
+        for other in others:
+            screen(f"{tools}/{name}-{other}.json", f"{outdir}/{name}-{other}.svg", name)
     banner(f"{outdir}/banner.svg")

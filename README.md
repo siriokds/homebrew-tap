@@ -73,6 +73,13 @@ A small text editor for the **terminal**, in the spirit of nano and vim: open a 
 save, quit.
 
 <table>
+<tr>
+<td width="50%" align="center" valign="top"><img src="images/texa-find.svg" alt="texa's Find and replace panel, the word found chosen in the page"><br><sub><b>Find and replace</b> — <code>^F</code>, the panel under the page</sub></td>
+<td width="50%" align="center" valign="top"><img src="images/texa-about.svg" alt="texa's About: the version, the author and his email"><br><sub><b>About</b> — <code>^K A</code></sub></td>
+</tr>
+</table>
+
+<table>
 <tr><td width="150"><b>Find and replace</b></td><td><code>Ctrl+F</code>, as Visual Studio's: <code>F3</code> goes to the next place, replace one or all (one undo takes it back)</td></tr>
 <tr><td width="150"><b>Word wrap</b></td><td>long lines go on in the next row; <code>Ctrl+K W</code> switches it</td></tr>
 <tr><td width="150"><b>Clipboard</b></td><td>the system's: <code>Ctrl+C</code>, <code>Ctrl+X</code>, <code>Ctrl+V</code></td></tr>
@@ -110,6 +117,18 @@ program (`CREDITS.md`, in `$(brew --prefix)/share/doc/texa`).</sub>
 
 A **hex editor** for the terminal: a file's bytes and their text side by side, to read, search
 and change byte by byte. The same look and keys as texa.
+
+<table>
+<tr>
+<td width="50%" align="center" valign="top"><img src="images/hexa-find.svg" alt="hexa's Find all: every place of a byte listed under the view"><br><sub><b>Find all</b> — every place, under the view</sub></td>
+<td width="50%" align="center" valign="top"><img src="images/hexa-commands.svg" alt="hexa's commands panel, filtered by what is typed"><br><sub><b>Every command</b> — <code>^P</code>, filtered as you type</sub></td>
+</tr>
+</table>
+
+<p align="center">
+  <img src="images/hexa-about.svg" alt="hexa's About: the version, the author and his email" width="560"><br>
+  <sub><b>About</b> — from <code>^P</code></sub>
+</p>
 
 <table>
 <tr><td width="150"><b>Find and replace</b></td><td><code>^F</code> bytes, text or numbers; <code>??</code> is any byte, <code>*</code> 0 to 16 bytes (<code>DE AD * BE EF</code>); Find all lists every place; <code>^R</code> replaces</td></tr>
