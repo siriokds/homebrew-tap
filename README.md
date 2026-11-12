@@ -41,6 +41,19 @@ SparkEdit is not notarized by Apple: open it once from Applications, macOS stops
 System Settings › Privacy & Security, **Open Anyway**. From then on it opens as any app, and
 `spk` works (until then macOS stops `spk` too).
 
+## From the old taps
+
+texa and SparkEdit had a tap each (`siriokds/texa`, `siriokds/sparkedit`); they are both here
+now. Installed from there, move them once:
+
+```sh
+brew uninstall texa && brew install siriokds/tap/texa
+brew uninstall --cask sparkedit && brew install --cask siriokds/tap/sparkedit
+brew untap siriokds/texa siriokds/sparkedit
+```
+
+Uninstalling SparkEdit does not touch its notes and settings.
+
 ## Updates
 
 `brew update` first, so that Homebrew reads the new versions:
