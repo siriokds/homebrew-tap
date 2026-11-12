@@ -1,58 +1,120 @@
-<div align="center">
+<p align="center">
+  <img src="images/banner.svg" alt="siriokds/tap — small text editors for the Mac, ready to install with Homebrew" width="100%">
+</p>
 
-# siriokds · Homebrew tap
+<p align="center">
+  <a href="#get-started"><b>Get started</b></a> &nbsp;·&nbsp;
+  <a href="#texa"><b>texa</b></a> &nbsp;·&nbsp;
+  <a href="#sparkedit"><b>SparkEdit</b></a> &nbsp;·&nbsp;
+  <a href="https://github.com/siriokds/homebrew-tap/releases"><b>Releases</b></a>
+</p>
 
-**Two small text editors for the Mac, ready to install with Homebrew.**
+<p align="center"><sub>Mac with Apple silicon &nbsp;·&nbsp; programs already built, nothing to compile</sub></p>
 
-[texa](#texa) · [SparkEdit](#sparkedit) · [Updates](#updates)
+<br>
 
-<sub>Mac with Apple silicon · built programs, nothing to compile</sub>
+## Get started
 
-</div>
-
----
-
-## First: add the tap (once, for all the apps)
-
-Run this **only once**, before installing the first app. It serves every app of this page, now
-and later: after it, each app is one short command.
+**1 · Add the tap** — only once. It serves every app of this page, now and later.
 
 ```sh
 brew tap siriokds/tap && brew trust siriokds/tap
 ```
 
-<sub>`brew trust` tells Homebrew that it may load programs from this tap (Homebrew 7 refuses the
-short names of a tap that is not its own until then).</sub>
+**2 · Install what you like** — one short line each. Every box has a copy button at its top right.
 
----
+<table>
+<tr>
+<td width="50%" valign="top">
 
-## texa
-
-A text editor for the **terminal**, in the spirit of nano and vim: open a file, change it, save,
-quit.
-
-**Install** — copy, paste in Terminal (the tap added once, above):
+**[texa](#texa)** &nbsp;—&nbsp; the editor for the terminal
 
 ```sh
 brew install texa
 ```
 
-**Use:** `texa notes.txt` opens a file; `texa` alone opens an empty page. The keys are written at
-the bottom of the screen; F10 quits.
+</td>
+<td width="50%" valign="top">
+
+**[SparkEdit](#sparkedit)** &nbsp;—&nbsp; the editor for the Mac
+
+```sh
+brew install --cask sparkedit
+```
+
+</td>
+</tr>
+</table>
+
+<sub>`brew trust` tells Homebrew that it may load programs from this tap: Homebrew 7 refuses the
+short names of a tap that is not its own until then.</sub>
+
+<br>
+
+---
+
+## texa
+
+<p align="center">
+  <img src="images/texa.svg" alt="texa in a terminal window: the file, the line numbers, the keys at the bottom" width="760">
+</p>
+
+A small text editor for the **terminal**, in the spirit of nano and vim: open a file, change it,
+save, quit.
+
+<table>
+<tr><td width="150"><b>Find and replace</b></td><td><code>Ctrl+F</code>, as Visual Studio's: <code>F3</code> goes to the next place, replace one or all (one undo takes it back)</td></tr>
+<tr><td width="150"><b>Word wrap</b></td><td>long lines go on in the next row; <code>Ctrl+K W</code> switches it</td></tr>
+<tr><td width="150"><b>Clipboard</b></td><td>the system's: <code>Ctrl+C</code>, <code>Ctrl+X</code>, <code>Ctrl+V</code></td></tr>
+<tr><td width="150"><b>Save As</b></td><td><code>Ctrl+O</code>, with <code>Tab</code> completing the name and a question before writing over a file</td></tr>
+<tr><td width="150"><b>Keys in sight</b></td><td>always written at the bottom; they rearrange themselves as the window narrows</td></tr>
+</table>
+
+**Install**
+
+```sh
+brew install texa
+```
+
+**Update** &nbsp;<sub>`brew update` first reads the new versions</sub>
+
+```sh
+brew update && brew upgrade texa
+```
+
+**Use** &nbsp;—&nbsp; `texa notes.txt` opens a file, `texa` alone an empty page. The version is
+beside the name, at the top left; `F10` quits.
 
 <sub>texa uses the engine of Microsoft Edit (MIT License); its notice is installed with the
 program (`CREDITS.md`, in `$(brew --prefix)/share/doc/texa`).</sub>
+
+<br>
 
 ---
 
 ## SparkEdit
 
-A text editor for the **Mac**, whose tabs are miniatures of their pages, with the `spk` command
-to open files from the shell.
+<p align="center">
+  <img src="images/sparkedit.png" alt="SparkEdit: two rows of tabs, each with a miniature of its page" width="760">
+</p>
 
-<p align="center"><img src="images/sparkedit.png" alt="SparkEdit with two rows of tabs" width="760"></p>
+A text editor for the **Mac** whose tabs are miniatures of their pages. macOS 14 or later.
 
-**Install** — copy, paste in Terminal (the tap added once, above):
+<table>
+<tr><td align="center"><sub><b>a few documents</b> — the names</sub><br><img src="images/tabs-names.png" alt="Tabs with their names" width="700"></td></tr>
+<tr><td align="center"><sub><b>more</b> — the names shorten, the number stays</sub><br><img src="images/tabs-short.png" alt="Tabs with shortened names" width="700"></td></tr>
+<tr><td align="center"><sub><b>many</b> — each tab is a miniature of its page</sub><br><img src="images/tabs-miniatures.png" alt="Tabs as miniatures of the pages" width="700"></td></tr>
+</table>
+
+<table>
+<tr><td width="150"><b>All Pages</b></td><td><code>⌘.</code> shows every document as a page, filtered by what it contains</td></tr>
+<tr><td width="150"><b>Session</b></td><td>every document comes back at the next start, the ones never saved too</td></tr>
+<tr><td width="150"><b>Find & Replace</b></td><td><code>⌘F</code> and <code>⌘H</code>, with regular expressions; Replace All is one undo</td></tr>
+<tr><td width="150"><b>Big files</b></td><td>a file of megabytes has its tab at once and fills in while you look</td></tr>
+<tr><td width="150"><b>From the shell</b></td><td><code>spk notes.txt</code> opens the file here, as CotEditor's <code>cot</code></td></tr>
+</table>
+
+**Install**
 
 ```sh
 brew install --cask sparkedit
@@ -65,29 +127,20 @@ brew install --cask sparkedit
 >
 > From then on it opens as any app, and `spk` works (until then macOS stops `spk` too).
 
-**Use:** `spk notes.txt` opens the file in SparkEdit, starting it if it is not running; a file
-that does not exist yet is made, empty. `spk -h` tells the rest. macOS 14 or later.
-
----
-
-## Updates
-
-To get the newest version of an app, one line, as for installing it. `brew update` comes first so
-that Homebrew reads the new versions; without it Homebrew may say there is nothing new.
-
-**texa:**
-
-```sh
-brew update && brew upgrade texa
-```
-
-**SparkEdit** (Homebrew closes it if it is open):
+**Update** &nbsp;<sub>`brew update` first reads the new versions; Homebrew closes SparkEdit if it is open</sub>
 
 ```sh
 brew update && brew upgrade --cask sparkedit
 ```
 
 <sub>If macOS stops SparkEdit after an update, **Open Anyway** again as the first time.</sub>
+
+**Use** &nbsp;—&nbsp; `spk notes.txt` opens the file in SparkEdit, starting it if it is not
+running; a file that does not exist yet is made, empty. `spk -h` tells the rest.
+
+<br>
+
+---
 
 <details>
 <summary><b>Installed from the old taps</b> (<code>siriokds/texa</code>, <code>siriokds/sparkedit</code>)?</summary>
