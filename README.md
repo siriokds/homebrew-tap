@@ -12,7 +12,10 @@
 
 ---
 
-## Once: add the tap
+## First: add the tap (once, for all the apps)
+
+Run this **only once**, before installing the first app. It serves every app of this page, now
+and later: after it, each app is one short command.
 
 ```sh
 brew tap siriokds/tap && brew trust siriokds/tap
@@ -28,7 +31,7 @@ short names of a tap that is not its own until then).</sub>
 A text editor for the **terminal**, in the spirit of nano and vim: open a file, change it, save,
 quit.
 
-**Install** — copy, paste in Terminal (after the tap, above):
+**Install** — copy, paste in Terminal (the tap added once, above):
 
 ```sh
 brew install texa
@@ -49,7 +52,7 @@ to open files from the shell.
 
 <p align="center"><img src="images/sparkedit.png" alt="SparkEdit with two rows of tabs" width="760"></p>
 
-**Install** — copy, paste in Terminal (after the tap, above):
+**Install** — copy, paste in Terminal (the tap added once, above):
 
 ```sh
 brew install --cask sparkedit
