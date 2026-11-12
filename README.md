@@ -2,14 +2,9 @@
 
 The Homebrew tap of siriokds's programs, already built (macOS on Apple silicon).
 
-```sh
-brew install siriokds/tap/texa
-brew install --cask siriokds/tap/sparkedit
-```
-
-Always with the whole name (`siriokds/tap/…`) the first time: Homebrew loads programs from a tap
-that is not its own only when they are named in full, and from then on trusts them (`brew
-upgrade` works by itself).
+Each program is installed with its own line below, to copy and paste in Terminal. The whole name
+(`siriokds/tap/…`) is needed the first time: Homebrew loads programs from a tap that is not its
+own only when they are named in full, and from then on trusts them.
 
 ## texa
 
@@ -18,8 +13,9 @@ Open a file, change it, save, quit.
 
 ```sh
 brew install siriokds/tap/texa
-texa notes.txt
 ```
+
+Then `texa notes.txt` opens a file.
 
 `texa --version` tells the version. texa uses the engine of Microsoft Edit (MIT License); its
 notice is installed with the program (`CREDITS.md`, in `$(brew --prefix)/share/doc/texa`).
@@ -31,11 +27,10 @@ the shell (as CotEditor's `cot`). macOS 14 or later.
 
 ```sh
 brew install --cask siriokds/tap/sparkedit
-spk notes.txt
 ```
 
-`spk file` opens the file in SparkEdit, starting it if it is not running; a file that does not
-exist yet is made, empty. `spk -h` tells the rest.
+Then `spk notes.txt` opens a file in SparkEdit, starting it if it is not running; a file that
+does not exist yet is made, empty. `spk -h` tells the rest.
 
 SparkEdit is not notarized by Apple: open it once from Applications, macOS stops it; then
 System Settings › Privacy & Security, **Open Anyway**. From then on it opens as any app, and
