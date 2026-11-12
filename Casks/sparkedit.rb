@@ -19,8 +19,9 @@ cask "sparkedit" do
   # No zap: SparkEdit's folder holds the user's notes and session, never deleted by Homebrew.
 
   caveats <<~EOS
-    SparkEdit is not notarized by Apple. The first time, macOS stops it: open
-    System Settings > Privacy & Security and click "Open Anyway".
+    SparkEdit is not notarized by Apple. Open it once from Applications: macOS
+    stops it; then System Settings > Privacy & Security, "Open Anyway".
+    Until then the spk command is stopped too.
 
     In the shell: spk file opens the file in SparkEdit (spk -h for the rest).
   EOS
