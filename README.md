@@ -12,15 +12,26 @@
 
 ---
 
+## Once: add the tap
+
+```sh
+brew tap siriokds/tap && brew trust siriokds/tap
+```
+
+<sub>`brew trust` tells Homebrew that it may load programs from this tap (Homebrew 7 refuses the
+short names of a tap that is not its own until then).</sub>
+
+---
+
 ## texa
 
 A text editor for the **terminal**, in the spirit of nano and vim: open a file, change it, save,
 quit.
 
-**Install** — copy, paste in Terminal:
+**Install** — copy, paste in Terminal (after the tap, above):
 
 ```sh
-brew install siriokds/tap/texa
+brew install texa
 ```
 
 **Use:** `texa notes.txt` opens a file; `texa` alone opens an empty page. The keys are written at
@@ -38,10 +49,10 @@ to open files from the shell.
 
 <p align="center"><img src="images/sparkedit.png" alt="SparkEdit with two rows of tabs" width="760"></p>
 
-**Install** — copy, paste in Terminal:
+**Install** — copy, paste in Terminal (after the tap, above):
 
 ```sh
-brew install --cask siriokds/tap/sparkedit
+brew install --cask sparkedit
 ```
 
 > [!IMPORTANT]
@@ -64,10 +75,6 @@ brew update && brew upgrade
 
 `brew update` first, so that Homebrew reads the new versions.
 
-> [!NOTE]
-> The first installation needs the whole name (`siriokds/tap/…`): Homebrew loads programs from a
-> tap that is not its own only when they are named in full, and from then on trusts them.
-
 <details>
 <summary><b>Installed from the old taps</b> (<code>siriokds/texa</code>, <code>siriokds/sparkedit</code>)?</summary>
 
@@ -76,9 +83,10 @@ brew update && brew upgrade
 Both programs are here now. Move them once (SparkEdit's notes and settings are not touched):
 
 ```sh
-brew uninstall texa && brew install siriokds/tap/texa
-brew uninstall --cask sparkedit && brew install --cask siriokds/tap/sparkedit
+brew uninstall texa && brew uninstall --cask sparkedit
 brew untap siriokds/texa siriokds/sparkedit
+brew tap siriokds/tap && brew trust siriokds/tap
+brew install texa && brew install --cask sparkedit
 ```
 
 </details>
