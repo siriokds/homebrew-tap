@@ -72,11 +72,22 @@ that does not exist yet is made, empty. `spk -h` tells the rest. macOS 14 or lat
 
 ## Updates
 
+To get the newest version of an app, one line, as for installing it. `brew update` comes first so
+that Homebrew reads the new versions; without it Homebrew may say there is nothing new.
+
+**texa:**
+
 ```sh
-brew update && brew upgrade
+brew update && brew upgrade texa
 ```
 
-`brew update` first, so that Homebrew reads the new versions.
+**SparkEdit** (Homebrew closes it if it is open):
+
+```sh
+brew update && brew upgrade --cask sparkedit
+```
+
+<sub>If macOS stops SparkEdit after an update, **Open Anyway** again as the first time.</sub>
 
 <details>
 <summary><b>Installed from the old taps</b> (<code>siriokds/texa</code>, <code>siriokds/sparkedit</code>)?</summary>
