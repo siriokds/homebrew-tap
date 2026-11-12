@@ -11,6 +11,9 @@
 
 SparkEdit's pictures are screenshots of a copy started with --demo-tabs=N (its sample texts),
 cut and rounded by tools/crop.swift: crop in out x y width height radius outWidth.
+N = 6 the first picture (wait some seconds: the content titles arrive from the Mac's model),
+24, 30, 35 and 128 the four states of the tabs; All Pages is N = 100 after Cmd+. sent to the
+copy without bringing it to the front (tools/keyto.swift: keyto <pid> 47 cmd).
 """
 import json, sys, html, re
 

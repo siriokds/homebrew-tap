@@ -95,18 +95,31 @@ program (`CREDITS.md`, in `$(brew --prefix)/share/doc/texa`).</sub>
 ## SparkEdit
 
 <p align="center">
-  <img src="images/sparkedit.png" alt="SparkEdit: two rows of tabs, each with a miniature of its page" width="760">
+  <img src="images/sparkedit.png" alt="SparkEdit: each tab has a miniature of its page, its name and, in red, what it contains" width="760">
 </p>
 
-A text editor for the **Mac** whose tabs are miniatures of their pages. macOS 14 or later.
+A text editor for the **Mac** whose tabs are miniatures of their pages. Beside each name, in
+red, a few words on what the document contains: the Mac writes them by itself. macOS 14 or
+later.
+
+**The tabs follow how many documents are open** (up to 128):
 
 <table>
 <tr><td align="center"><sub><b>a few documents</b> — the names</sub><br><img src="images/tabs-names.png" alt="Tabs with their names" width="700"></td></tr>
 <tr><td align="center"><sub><b>more</b> — the names shorten, the number stays</sub><br><img src="images/tabs-short.png" alt="Tabs with shortened names" width="700"></td></tr>
 <tr><td align="center"><sub><b>many</b> — each tab is a miniature of its page</sub><br><img src="images/tabs-miniatures.png" alt="Tabs as miniatures of the pages" width="700"></td></tr>
+<tr><td align="center"><sub><b>a hundred and more</b> — bars, as tall as their text is long</sub><br><img src="images/tabs-bars.png" alt="Tabs as bars" width="700"></td></tr>
 </table>
 
+**All Pages** (`⌘.`) — every document as a page, with its first lines and what it contains;
+type, and only the pages with those words stay.
+
+<p align="center">
+  <img src="images/all-pages.png" alt="All Pages: a grid of the open documents as pages, with a field to filter them" width="760">
+</p>
+
 <table>
+<tr><td width="150"><b>Titles by themselves</b></td><td>a few words on what each document contains, beside its name: written on the Mac by Apple's on-device model (Apple Intelligence, macOS 26 or later), with nothing to ask for</td></tr>
 <tr><td width="150"><b>All Pages</b></td><td><code>⌘.</code> shows every document as a page, filtered by what it contains</td></tr>
 <tr><td width="150"><b>Session</b></td><td>every document comes back at the next start, the ones never saved too</td></tr>
 <tr><td width="150"><b>Find & Replace</b></td><td><code>⌘F</code> and <code>⌘H</code>, with regular expressions; Replace All is one undo</td></tr>
