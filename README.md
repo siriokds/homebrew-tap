@@ -183,7 +183,23 @@ type, and only the pages with those words stay.
   <img src="images/all-pages.png" alt="All Pages: a grid of the open documents as pages, with a field to filter them" width="760">
 </p>
 
+**Settings** (`⌘,`) — three pages, and every choice is a small picture of what it does. Nothing
+to confirm: what you choose is seen at once on the whole app, and kept.
+
 <table>
+<tr>
+<td width="50%" align="center" valign="top"><img src="images/settings-appearance.png" alt="Settings, Appearance: the four themes as small windows, the font, Check spelling, the size, a preview"><br><sub><b>Appearance</b> — Light, Dark, Black or Auto (as the Mac); the font, the size, Check spelling</sub></td>
+<td width="50%" align="center" valign="top"><img src="images/settings-light.png" alt="Settings in the Light theme: paper"><br><sub><b>Light</b> — the page as paper; the theme reaches every part at once</sub></td>
+</tr>
+<tr>
+<td width="50%" align="center" valign="top"><img src="images/settings-page.png" alt="Settings, Page: the width as three small windows, a card of switches"><br><sub><b>Page</b> — 80 columns, 120 or the whole window; line numbers, word wrap, spaces, line ends</sub></td>
+<td width="50%" align="center" valign="top"><img src="images/settings-tabs.png" alt="Settings, Tabs: the rows as four small windows, a small window to try them"><br><sub><b>Tabs</b> — one to four rows, tried on your own documents in a small example window</sub></td>
+</tr>
+</table>
+
+<table>
+<tr><td width="150"><b>Settings</b></td><td><code>⌘,</code>: themes (Light as paper, Dark, Black, Auto), font and size, the page's width and what it shows, the rows of tabs</td></tr>
+<tr><td width="150"><b>Check spelling</b></td><td>the Mac's own, a red wave under the words: only once you stop typing, never on the word you are writing</td></tr>
 <tr><td width="150"><b>Titles by themselves</b></td><td>a few words on what each document contains, beside its name: written on the Mac by Apple's on-device model (Apple Intelligence, macOS 26 or later), with nothing to ask for</td></tr>
 <tr><td width="150"><b>All Pages</b></td><td><code>⌘.</code> shows every document as a page, filtered by what it contains</td></tr>
 <tr><td width="150"><b>Session</b></td><td>every document comes back at the next start, the ones never saved too</td></tr>

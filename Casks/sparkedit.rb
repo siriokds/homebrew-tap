@@ -1,6 +1,6 @@
 cask "sparkedit" do
-  version "2.0.0,172"
-  sha256 "6779c45d8d98f307cef5cd5e6888b4d8886bcba5369798f0f5b08a057baeb864"
+  version "2.0.0,183"
+  sha256 "e1e907321fa0142c106ec2b0d37015c746d9ced61650f53f61817764402724ca"
 
   url "https://github.com/siriokds/homebrew-tap/releases/download/sparkedit-#{version.csv.first}-#{version.csv.second}/SparkEdit-#{version.csv.first}-#{version.csv.second}.zip"
   name "SparkEdit"
