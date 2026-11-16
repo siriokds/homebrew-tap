@@ -1,6 +1,6 @@
 cask "sparkedit" do
-  version "2.0.0,183"
-  sha256 "e1e907321fa0142c106ec2b0d37015c746d9ced61650f53f61817764402724ca"
+  version "2.1.0,342"
+  sha256 "6eca6af07f43a079da41c8bfb1dfe2c679a4852fceb3ee673b3eb7f36f5a1be2"
 
   url "https://github.com/siriokds/homebrew-tap/releases/download/sparkedit-#{version.csv.first}-#{version.csv.second}/SparkEdit-#{version.csv.first}-#{version.csv.second}.zip"
   name "SparkEdit"
@@ -24,5 +24,9 @@ cask "sparkedit" do
     Until then the spk command is stopped too.
 
     In the shell: spk file opens the file in SparkEdit (spk -h for the rest).
+
+    Colours for code (optional): the dual-syntax plugin, from another tap:
+      brew install siriokds/dual-viewers/dual-syntax
+    Settings > Text says whether SparkEdit found it.
   EOS
 end
