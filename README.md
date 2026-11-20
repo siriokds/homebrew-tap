@@ -167,10 +167,10 @@ A text editor for the **Mac** whose tabs are miniatures of their pages. Beside e
 red, a few words on what the document contains: the Mac writes them by itself. macOS 14 or
 later.
 
-**New in 2.1: colours for code.** 21 languages (Bash, C, C#, C++, CMake, CSS, Dockerfile, HTML,
-JavaScript, JSON, JSX, Lua, Make, Markdown, PHP, Python, Rust, SQL, TOML, TSX, TypeScript), in the
-colours of the theme. The language is written at the bottom right; a click there, or the
-**Language** menu, changes it for that document.
+**New in 2.1: colours for code.** 22 languages (Bash, C, C#, C++, CMake, CSS, Dockerfile, HTML,
+JavaScript, JSON, JSX, Lua, Make, Markdown, PHP, Python, Rust, SQL, TOML, TSX, TypeScript, and Z80
+assembly for sjasmplus from the plugin's 1.2), in the colours of the theme. The language is written
+at the bottom right; a click there, or the **Language** menu, changes it for that document.
 
 <p align="center">
   <img src="images/colours-dark.png" alt="PHP coloured in the Dark theme; PHP written in the status line, at the bottom right" width="760">
@@ -222,7 +222,7 @@ you choose is seen at once on the whole app, and kept.
 
 <table>
 <tr><td width="150"><b>Settings</b></td><td><code>⌘,</code>: themes (Light as paper, Dark, Black, Auto), font and size, the page's width and what it shows, the rows of tabs, the colours for code</td></tr>
-<tr><td width="150"><b>Colours for code</b></td><td>21 languages with the optional dual-syntax plugin; the Language menu and the status line; recognised by name, by the first line, or by Apple's model for new documents</td></tr>
+<tr><td width="150"><b>Colours for code</b></td><td>22 languages with the optional dual-syntax plugin, Z80 assembly among them (sjasmplus); the Language menu and the status line; recognised by name, by the first line, or by Apple's model for new documents</td></tr>
 <tr><td width="150"><b>Check spelling</b></td><td>the Mac's own, a red wave under the words: only once you stop typing, never on the word you are writing</td></tr>
 <tr><td width="150"><b>Titles by themselves</b></td><td>a few words on what each document contains, beside its name: written on the Mac by Apple's on-device model (Apple Intelligence, macOS 26 or later), with nothing to ask for</td></tr>
 <tr><td width="150"><b>All Pages</b></td><td><code>⌘.</code> shows every document as a page, filtered by what it contains</td></tr>
@@ -238,6 +238,8 @@ you choose is seen at once on the whole app, and kept.
 brew install --cask sparkedit
 ```
 
+<sub>Without Homebrew: the DMG of the latest SparkEdit in [Releases](https://github.com/siriokds/homebrew-tap/releases); drag SparkEdit to Applications.</sub>
+
 > [!IMPORTANT]
 > **The first time only.** SparkEdit is not notarized by Apple, so macOS stops it:
 > 1. open SparkEdit from Applications and close macOS's message;
@@ -250,6 +252,8 @@ brew install --cask sparkedit
 ```sh
 brew install siriokds/dual-viewers/dual-syntax
 ```
+
+<sub>Already installed? `brew update && brew upgrade dual-syntax` brings the new languages (1.2: Z80 assembly).</sub>
 
 **Update** &nbsp;<sub>`brew update` first reads the new versions; Homebrew closes SparkEdit if it is open</sub>
 
